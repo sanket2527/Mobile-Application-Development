@@ -1,16 +1,19 @@
-package com.example.yourapp;
+package com.example.progressbar;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+import android.widget.Button;
 import android.widget.ProgressBar;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 public class MainActivity extends AppCompatActivity {
 
-    ProgressBar circularBar;
-    int progress = 0;
+    ProgressBar horizontalBar;
+    Button btnNext;
 
+    int progress = 0;
     Handler handler = new Handler();
 
     @Override
@@ -18,30 +21,30 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        circularBar = findViewById(R.id.circularBar);
+        horizontalBar = findViewById(R.id.horizontalBar);
+        btnNext = findViewById(R.id.btnNext);
 
-        circularBar.setMax(100);
-        circularBar.setProgress(0);
+        startProgress();
 
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                while (progress < 100) {
-                    progress += 1;
+        btnNext.setOnClickListener(v -> {
+            Intent intent = new Intent(MainActivity.this, CircularActivity.class);
+            startActivity(intent);
+        });
+    }
 
-                    handler.post(new Runnable() {
-                        @Override
-                        public void run() {
-                            circularBar.setProgress(progress);
-                        }
-                    });
+    private void startProgress() {
+        progress = 0;
 
-                    try {
-                        Thread.sleep(40);
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
-                    }
+        new Thread(() -> {
+            while (progress <= 100) {
+                try {
+                    Thread.sleep(50);
+                } catch (Exception e) {
+                    e.printStackTrace();
                 }
+
+                handler.post(() -> horizontalBar.setProgress(progress));
+                progress++;
             }
         }).start();
     }
