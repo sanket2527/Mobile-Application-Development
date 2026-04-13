@@ -1,10 +1,7 @@
-package com.example.calculator;
+package com.example.myapplication;
 
 import android.os.Bundle;
-import android.view.View;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.TextView;
+import android.widget.*;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -12,7 +9,7 @@ public class MainActivity extends AppCompatActivity {
 
     EditText num1, num2;
     TextView result;
-    Button add, sub, mul, div;
+    Button add, sub, mul, div, clear, square;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,38 +24,69 @@ public class MainActivity extends AppCompatActivity {
         sub = findViewById(R.id.sub);
         mul = findViewById(R.id.mul);
         div = findViewById(R.id.div);
+        clear = findViewById(R.id.clear);
+        square = findViewById(R.id.square);
 
         add.setOnClickListener(v -> calculate("+"));
         sub.setOnClickListener(v -> calculate("-"));
         mul.setOnClickListener(v -> calculate("*"));
         div.setOnClickListener(v -> calculate("/"));
+
+        clear.setOnClickListener(v -> {
+            num1.setText("");
+            num2.setText("");
+            result.setText("0");
+        });
+
+        square.setOnClickListener(v -> {
+            String n1 = num1.getText().toString();
+
+            if (n1.isEmpty()) {
+                Toast.makeText(this, "Enter first number", Toast.LENGTH_SHORT).show();
+                return;
+            }
+
+            try {
+                double a = Double.parseDouble(n1);
+                double res = a * a;
+                result.setText(String.valueOf(res));
+            } catch (Exception e) {
+                Toast.makeText(this, "Invalid input", Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
     private void calculate(String op) {
-        double n1 = Double.parseDouble(num1.getText().toString());
-        double n2 = Double.parseDouble(num2.getText().toString());
-        double res = 0;
+        String n1 = num1.getText().toString();
+        String n2 = num2.getText().toString();
 
-        switch (op) {
-            case "+":
-                res = n1 + n2;
-                break;
-            case "-":
-                res = n1 - n2;
-                break;
-            case "*":
-                res = n1 * n2;
-                break;
-            case "/":
-                if (n2 != 0)
-                    res = n1 / n2;
-                else {
-                    result.setText("Cannot divide by zero");
-                    return;
-                }
-                break;
+        if (n1.isEmpty() || n2.isEmpty()) {
+            Toast.makeText(this, "Enter both numbers", Toast.LENGTH_SHORT).show();
+            return;
         }
 
-        result.setText("Result: " + res);
+        try {
+            double a = Double.parseDouble(n1);
+            double b = Double.parseDouble(n2);
+            double res = 0;
+
+            switch (op) {
+                case "+": res = a + b; break;
+                case "-": res = a - b; break;
+                case "*": res = a * b; break;
+                case "/":
+                    if (b == 0) {
+                        Toast.makeText(this, "Cannot divide by zero", Toast.LENGTH_SHORT).show();
+                        return;
+                    }
+                    res = a / b;
+                    break;
+            }
+
+            result.setText(String.valueOf(res));
+
+        } catch (Exception e) {
+            Toast.makeText(this, "Invalid input", Toast.LENGTH_SHORT).show();
+        }
     }
 }
