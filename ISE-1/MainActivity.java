@@ -1,47 +1,55 @@
 package com.example.contact;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
-import android.widget.ImageButton;
-import android.widget.TextView;
+import android.provider.ContactsContract;
+import android.widget.Button;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
-public class ActionActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity {
 
-    ImageButton callBtn, smsBtn, whatsappBtn;
-    TextView nameTv;
-    String number, name;
+    Button selectContactBtn;
+    int PICK_CONTACT = 1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_action);
+        setContentView(R.layout.activity_main);
 
-        callBtn = findViewById(R.id.callBtn);
-        smsBtn = findViewById(R.id.smsBtn);
-        whatsappBtn = findViewById(R.id.whatsappBtn);
-        nameTv = findViewById(R.id.nameTv);
+        selectContactBtn = findViewById(R.id.selectContactBtn);
 
-        name = getIntent().getStringExtra("name");
-        number = getIntent().getStringExtra("number");
+        selectContactBtn.setOnClickListener(v -> {
 
-        nameTv.setText(name);
-
-        callBtn.setOnClickListener(v -> {
-            Intent intent = new Intent(Intent.ACTION_DIAL, Uri.parse("tel:" + number));
-            startActivity(intent);
+            Intent intent = new Intent(Intent.ACTION_PICK,
+                    ContactsContract.CommonDataKinds.Phone.CONTENT_URI);
+            startActivityForResult(intent, PICK_CONTACT);
         });
+    }
 
-        smsBtn.setOnClickListener(v -> {
-            Intent intent = new Intent(Intent.ACTION_SENDTO, Uri.parse("smsto:" + number));
-            startActivity(intent);
-        });
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
 
-        whatsappBtn.setOnClickListener(v -> {
-            String url = "https://api.whatsapp.com/send?phone=" + number;
-            Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
-            startActivity(intent);
-        });
+        if(requestCode == PICK_CONTACT && resultCode == RESULT_OK && data != null) {
+            Uri contactUri = data.getData();
+            Cursor cursor = getContentResolver().query(contactUri, null, null, null, null);
+
+            if(cursor != null && cursor.moveToFirst()) {
+                @SuppressLint("Range") String name = cursor.getString(
+                        cursor.getColumnIndex(ContactsContract.CommonDataKinds.Phone.DISPLAY_NAME));
+                @SuppressLint("Range") String number = cursor.getString(
+                        cursor.getColumnIndex(ContactsContract.CommonDataKinds.Phone.NUMBER));
+                cursor.close();
+
+                Intent intent = new Intent(MainActivity.this, com.example.contact.ActionActivity.class);
+                intent.putExtra("name", name);
+                intent.putExtra("number", number);
+                startActivity(intent);
+            }
+        }
     }
 }
