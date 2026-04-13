@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#F4F6FF">
+
+    <LinearLayout
+        android:id="@+id/mainLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="20dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Food Order Form "
+            android:textSize="22sp"
+            android:textStyle="bold"
+            android:textColor="#333"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Select Food Items"
+            android:textSize="18sp"
+            android:layout_marginTop="15dp"/>
+
+        <CheckBox
+            android:id="@+id/cbPizza"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Pizza"/>
+
+        <CheckBox
+            android:id="@+id/cbBurger"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Burger"/>
+
+        <CheckBox
+            android:id="@+id/cbPasta"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Pasta"/>
+
+        <CheckBox
+            android:id="@+id/cbSandwich"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Sandwich"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Payment Method"
+            android:textSize="18sp"
+            android:layout_marginTop="20dp"/>
+
+        <RadioGroup
+            android:id="@+id/radioGroup"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <RadioButton
+                android:id="@+id/rbCash"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Cash"/>
+
+            <RadioButton
+                android:id="@+id/rbCard"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Card"/>
+
+            <RadioButton
+                android:id="@+id/rbUPI"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="UPI"/>
+        </RadioGroup>
+
+        <Button
+            android:id="@+id/btnSubmit"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:text="Place Order"
+            android:backgroundTint="#5C6BC0"
+            android:textColor="#FFFFFF"
+            android:layout_marginTop="20dp"/>
+
+        <TextView
+            android:id="@+id/resultText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Your Order will appear here"
+            android:textSize="16sp"
+            android:textColor="#000"
+            android:layout_marginTop="20dp"
+            android:padding="10dp"
+            android:background="#FFFFFF"/>
+
+    </LinearLayout>
+</ScrollView>
