@@ -1,0 +1,48 @@
+package com.example.yourapp;
+
+import android.os.Bundle;
+import android.os.Handler;
+import android.widget.ProgressBar;
+
+import androidx.appcompat.app.AppCompatActivity;
+
+public class MainActivity extends AppCompatActivity {
+
+    ProgressBar circularBar;
+    int progress = 0;
+
+    Handler handler = new Handler();
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+
+        circularBar = findViewById(R.id.circularBar);
+
+        circularBar.setMax(100);
+        circularBar.setProgress(0);
+
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                while (progress < 100) {
+                    progress += 1;
+
+                    handler.post(new Runnable() {
+                        @Override
+                        public void run() {
+                            circularBar.setProgress(progress);
+                        }
+                    });
+
+                    try {
+                        Thread.sleep(40);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+        }).start();
+    }
+}
