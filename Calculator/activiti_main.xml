@@ -1,68 +1,121 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    android:id="@+id/mainLayout"
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:padding="20dp"
-    android:gravity="center"
-    android:background="#F3F6FF">
+    android:background="#0F172A">
 
+    <!-- Display -->
+    <TextView
+        android:id="@+id/result"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:text="0"
+        android:textSize="32sp"
+        android:textColor="#FFFFFF"
+        android:gravity="end|center_vertical"
+        android:background="#1E293B"
+        android:padding="20dp"
+        android:layout_marginBottom="20dp"/>
+
+    <!-- Input Fields -->
     <EditText
         android:id="@+id/num1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Enter first number"
-        android:inputType="numberDecimal"/>
+        android:hint="Enter First Number"
+        android:textColor="#FFFFFF"
+        android:hintTextColor="#AAAAAA"
+        android:inputType="numberDecimal"
+        android:background="#1E293B"
+        android:padding="12dp"/>
 
     <EditText
         android:id="@+id/num2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Enter second number"
+        android:hint="Enter Second Number"
+        android:textColor="#FFFFFF"
+        android:hintTextColor="#AAAAAA"
         android:inputType="numberDecimal"
+        android:background="#1E293B"
+        android:padding="12dp"
         android:layout_marginTop="10dp"/>
 
-    <TextView
-        android:id="@+id/result"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Result: "
-        android:textSize="20sp"
-        android:layout_marginTop="20dp"/>
-
-    <LinearLayout
+    <!-- Buttons -->
+    <GridLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_marginTop="20dp"
-        android:gravity="center">
+        android:columnCount="2"
+        android:layout_marginTop="25dp">
 
         <Button
             android:id="@+id/add"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="+"/>
+            android:text="+"
+            android:textSize="22sp"
+            android:layout_width="0dp"
+            android:layout_height="70dp"
+            android:layout_columnWeight="1"
+            android:backgroundTint="#22C55E"
+            android:textColor="#FFF"
+            android:layout_margin="6dp"/>
 
         <Button
             android:id="@+id/sub"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
             android:text="-"
-            android:layout_marginLeft="10dp"/>
+            android:textSize="22sp"
+            android:layout_width="0dp"
+            android:layout_height="70dp"
+            android:layout_columnWeight="1"
+            android:backgroundTint="#EF4444"
+            android:textColor="#FFF"
+            android:layout_margin="6dp"/>
 
         <Button
             android:id="@+id/mul"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
             android:text="×"
-            android:layout_marginLeft="10dp"/>
+            android:textSize="22sp"
+            android:layout_width="0dp"
+            android:layout_height="70dp"
+            android:layout_columnWeight="1"
+            android:backgroundTint="#A855F7"
+            android:textColor="#FFF"
+            android:layout_margin="6dp"/>
 
         <Button
             android:id="@+id/div"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
             android:text="÷"
-            android:layout_marginLeft="10dp"/>
-    </LinearLayout>
+            android:textSize="22sp"
+            android:layout_width="0dp"
+            android:layout_height="70dp"
+            android:layout_columnWeight="1"
+            android:backgroundTint="#3B82F6"
+            android:textColor="#FFF"
+            android:layout_margin="6dp"/>
+
+        <Button
+            android:id="@+id/clear"
+            android:text="CLEAR"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_columnSpan="2"
+            android:backgroundTint="#F59E0B"
+            android:textColor="#FFF"
+            android:layout_margin="6dp"/>
+
+        <Button
+            android:id="@+id/square"
+            android:text="x²"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_columnSpan="2"
+            android:backgroundTint="#14B8A6"
+            android:textColor="#FFF"
+            android:layout_margin="6dp"/>
+
+    </GridLayout>
 
 </LinearLayout>
