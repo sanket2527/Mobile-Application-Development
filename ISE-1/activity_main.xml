@@ -6,50 +6,11 @@
     android:layout_height="match_parent"
     android:padding="20dp">
 
-    <TextView
-        android:id="@+id/nameTv"
+    <Button
+        android:id="@+id/selectContactBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Contact Name"
-        android:textSize="24sp"
-        android:layout_marginBottom="30dp"/>
-
-    <LinearLayout
-        android:orientation="horizontal"
-        android:gravity="center"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
-
-        <ImageButton
-            android:id="@+id/callBtn"
-            android:layout_width="80dp"
-            android:layout_height="80dp"
-            android:layout_margin="10dp"
-            android:src="@android:drawable/ic_menu_call"
-            android:background="?attr/selectableItemBackgroundBorderless"
-            android:scaleType="centerInside"
-            android:contentDescription="Call"/>
-
-        <ImageButton
-            android:id="@+id/smsBtn"
-            android:layout_width="80dp"
-            android:layout_height="80dp"
-            android:layout_margin="10dp"
-            android:src="@android:drawable/ic_dialog_email"
-            android:background="?attr/selectableItemBackgroundBorderless"
-            android:scaleType="centerInside"
-            android:contentDescription="SMS"/>
-
-        <ImageButton
-            android:id="@+id/whatsappBtn"
-            android:layout_width="80dp"
-            android:layout_height="80dp"
-            android:layout_margin="10dp"
-            android:src="@drawable/whatsapp"
-            android:background="?attr/selectableItemBackgroundBorderless"
-            android:scaleType="centerInside"
-            android:contentDescription="WhatsApp"/>
-
-    </LinearLayout>
-
+        android:text="Select Contact"
+        android:textSize="18sp"
+        android:padding="10dp"/>
 </LinearLayout>
