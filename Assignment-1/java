@@ -1,4 +1,4 @@
-package com.example.yourapp;
+package com.example.assignment;
 
 import android.graphics.Color;
 import android.os.Bundle;
@@ -11,7 +11,6 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 public class MainActivity extends AppCompatActivity {
 
     ConstraintLayout mainLayout;
-    Button button1, button2, button3, button4, button5, button6, button7;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -20,45 +19,31 @@ public class MainActivity extends AppCompatActivity {
 
         mainLayout = findViewById(R.id.main);
 
-        button1 = findViewById(R.id.button);
-        button2 = findViewById(R.id.button3);
-        button3 = findViewById(R.id.button4);
-        button4 = findViewById(R.id.button5);
-        button5 = findViewById(R.id.button6);
-        button6 = findViewById(R.id.button7);
+        Button b1 = findViewById(R.id.button1);
+        Button b2 = findViewById(R.id.button2);
+        Button b3 = findViewById(R.id.button3);
+        Button b4 = findViewById(R.id.button4);
+        Button b5 = findViewById(R.id.button5);
 
 
-        View.OnClickListener changeColorListener = new View.OnClickListener() {
+        View.OnClickListener listener = new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                if (v.getId() == R.id.button) {
-                    mainLayout.setBackgroundColor(Color.RED);
-                } 
-                else if (v.getId() == R.id.button3) {
-                    mainLayout.setBackgroundColor(Color.BLUE);
-                } 
-                else if (v.getId() == R.id.button4) {
-                    mainLayout.setBackgroundColor(Color.GREEN);
-                } 
-                else if (v.getId() == R.id.button5) {
-                    mainLayout.setBackgroundColor(Color.YELLOW);
-                } 
-                else if (v.getId() == R.id.button6) {
-                    mainLayout.setBackgroundColor(Color.MAGENTA);
-                } 
-                else if (v.getId() == R.id.button7) {
-                    mainLayout.setBackgroundColor(Color.CYAN);
-                }
+                int color = Color.rgb(
+                        (int)(Math.random()*256),
+                        (int)(Math.random()*256),
+                        (int)(Math.random()*256)
+                );
+
+                mainLayout.setBackgroundColor(color);
             }
         };
 
-        button1.setOnClickListener(changeColorListener);
-        button2.setOnClickListener(changeColorListener);
-        button3.setOnClickListener(changeColorListener);
-        button4.setOnClickListener(changeColorListener);
-        button5.setOnClickListener(changeColorListener);
-        button6.setOnClickListener(changeColorListener);
-        button7.setOnClickListener(changeColorListener);
+        b1.setOnClickListener(listener);
+        b2.setOnClickListener(listener);
+        b3.setOnClickListener(listener);
+        b4.setOnClickListener(listener);
+        b5.setOnClickListener(listener);
     }
 }
