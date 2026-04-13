@@ -6,7 +6,6 @@
     android:layout_height="match_parent"
     android:background="#F3F6FF">
 
-    <!-- Card container -->
     <androidx.cardview.widget.CardView
         android:id="@+id/cardContainer"
         android:layout_width="0dp"
@@ -25,7 +24,6 @@
             android:orientation="vertical"
             android:padding="20dp">
 
-            <!-- Title -->
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -36,7 +34,6 @@
                 android:layout_gravity="center_horizontal"
                 android:paddingBottom="16dp"/>
 
-            <!-- Horizontal ProgressBar -->
             <ProgressBar
                 android:id="@+id/horizontalBar"
                 style="?android:attr/progressBarStyleHorizontal"
@@ -47,7 +44,6 @@
                 android:progressTint="#6C63FF"
                 android:backgroundTint="#DADADA"/>
 
-            <!-- Percentage Text -->
             <TextView
                 android:id="@+id/txtProgress"
                 android:layout_width="wrap_content"
@@ -58,7 +54,6 @@
                 android:layout_marginTop="10dp"
                 android:layout_gravity="center_horizontal"/>
 
-            <!-- Button -->
             <Button
                 android:id="@+id/btnNext"
                 android:layout_width="match_parent"
